@@ -14,7 +14,6 @@ import 'bootstrap';
 
 //delete overlay confirmation
 
-
 const eleConfirmationDelete = document.querySelector('#confirmation-delete');
 if (eleConfirmationDelete) {
 
@@ -46,6 +45,7 @@ if (eleConfirmationDelete) {
 //     })
 
 // }
+
 
 
 //generate slug
