@@ -20,7 +20,10 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 <body>
-    <x-navbar color="light"/>
+    <x-navbar @guest color="light" @else color="dark" />
+
+
+
 
     <main class="py-4">
         @yield('content')
