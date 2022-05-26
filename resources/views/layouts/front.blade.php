@@ -20,9 +20,11 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 <body>
-    <x-navbar @guest color="light" @else color="dark" />
-
-
+    @guest
+        <x-navbar color="light" />
+    @else
+        <x-navbar color="dark" />
+    @endguest
 
 
     <main class="py-4">

@@ -27913,14 +27913,10 @@ var render = function () {
     { staticClass: "row g-3" },
     _vm._l(_vm.posts, function (post) {
       return _c("div", { key: post.id, staticClass: "col-4" }, [
-        _c("div", { staticClass: "card" }, [
-          _c("div", { staticClass: "card-body" }, [
+        _c("div", { staticClass: "card h-100" }, [
+          _c("div", { staticClass: "card-body d-flex flex-column" }, [
             _c("h5", { staticClass: "card-title" }, [
               _vm._v(_vm._s(post.title)),
-            ]),
-            _vm._v(" "),
-            _c("p", { staticClass: "card-text" }, [
-              _vm._v(_vm._s(post.content)),
             ]),
             _vm._v(" "),
             _c(
