@@ -1,18 +1,19 @@
 <template>
     <div>
         <HeaderGuest />
+        <ContainerPosts />
     </div>
 </template>
 
 <script>
 import HeaderGuest from "../components/HeaderGuest";
-import CardGuest from "../components/CardGuest";
+import ContainerPosts from "../components/ContainerPosts";
 
 export default {
     name: 'App',
     components: {
         HeaderGuest,
-        CardGuest,
+        ContainerPosts,
     }
 }
 </script>
