@@ -9,9 +9,9 @@ require('./bootstrap');
 import 'bootstrap';
 
 window.Vue = require('vue');
-
 window.Axios = require('axios');
-
+import VueRouter from 'vue-router';
+Vue.use(VueRouter);
 
 /**
  * The following block of code may be used to automatically register your
@@ -26,16 +26,24 @@ window.Axios = require('axios');
 
 // Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 
+
+
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-import App from './views/App.vue'
+const router = new VueRouter({
+
+})
+
+
+import App from './views/App.vue';
 const app = new Vue({
     el: '#app',
-    render: h => h(App)
+    render: h => h(App),
+    router // short for `router: router`
 });
 
 
