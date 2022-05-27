@@ -62,7 +62,7 @@ const router = new VueRouter({
             component: PostIndex
         },
         {
-            path: '/show',
+            path: '/show/:slug',
             name: 'show',
             component: PostShow
         },

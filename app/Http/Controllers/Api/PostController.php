@@ -9,18 +9,26 @@ use Psy\Util\Json;
 
 class PostController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+
+    public function index(Request $request)
     {
+        $attributes = $request->all();
+        if (array_key_exists('home', $attributes)) {
+
+            return response()->json([
+                'success'   => true,
+                'response'  => [
+                    'data'  => Post::inRandomOrder()->limit(3)->get()
+                ],
+            ]);
+
+        }
+
         $posts = Post::paginate(20);
 
         return response()->json([
-            'status'    => 'success',
-            'response'     => $posts,
+            'success'   => true,
+            'response'  => $posts,
         ]);
     }
 

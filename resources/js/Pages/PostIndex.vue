@@ -7,8 +7,8 @@
                     <div class="card-body d-flex flex-column">
                         <h5 class="card-title">{{ post.title }}</h5>
                         <!-- <p class="card-text">{{ post.content }}</p> -->
-                        <a :href="'/posts/' + post.slug" class="btn btn-primary mt-auto">Mooore</a>
-                        <router-link :to="{name: 'show'}" class="btn btn-primary mt-auto">Read More</router-link>
+                        <!-- <a :href="'/posts/' + post.slug" class="btn btn-primary mt-auto">Mooore</a> -->
+                        <router-link :to="{name: 'show', params: {slug: post.slug}}" class="btn btn-primary mt-auto">Read More</router-link>
                     </div>
                 </div>
             </div>
