@@ -10,8 +10,7 @@ import 'bootstrap';
 
 window.Vue = require('vue');
 window.Axios = require('axios');
-import VueRouter from 'vue-router';
-Vue.use(VueRouter);
+
 
 /**
  * The following block of code may be used to automatically register your
@@ -34,8 +33,40 @@ Vue.use(VueRouter);
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-const router = new VueRouter({
+import VueRouter from 'vue-router';
+Vue.use(VueRouter);
 
+import PageHome from './Pages/PageHome.vue';
+import PageAbout from './Pages/PageAbout.vue';
+import PostIndex from './Pages/PostIndex.vue';
+import PostShow from './Pages/PostShow.vue';
+
+
+
+const router = new VueRouter({
+    mode: 'history',
+    routes: [
+        {
+          path: '/',
+          name: 'home',
+          component: PageHome
+        },
+        {
+            path: '/about',
+            name: 'about',
+            component: PageAbout
+        },
+        {
+            path: '/index',
+            name: 'index',
+            component: PostIndex
+        },
+        {
+            path: '/show',
+            name: 'show',
+            component: PostShow
+        },
+    ],
 })
 
 

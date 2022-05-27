@@ -1,7 +1,7 @@
 <template>
     <div>
         <HeaderGuest />
-        <ContainerPosts />
+        <router-view></router-view>
     </div>
 </template>
 

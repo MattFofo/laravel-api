@@ -1,6 +1,13 @@
 <template>
     <header>
-        sono l'header con vue
+        <div class="container">
+
+            <nav>
+                <router-link :to="{name: 'home'}" class="">Home</router-link>
+                <router-link :to="{name: 'index'}" class="">Blog</router-link>
+                <router-link :to="{name: 'about'}" class="">About</router-link>
+            </nav>
+        </div>
     </header>
 </template>
 
