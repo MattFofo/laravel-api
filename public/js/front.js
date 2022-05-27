@@ -5165,6 +5165,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'ContainerPosts',
   data: function data() {
@@ -28072,32 +28074,34 @@ var render = function () {
                 class: post == _vm.posts[0] ? "active" : "",
               },
               [
-                _c("div", { staticClass: "card h-100" }, [
-                  _c(
-                    "div",
-                    { staticClass: "card-body d-flex flex-column" },
-                    [
-                      _c("h5", { staticClass: "card-title" }, [
-                        _vm._v(_vm._s(post.title)),
-                      ]),
-                      _vm._v(" "),
-                      _c("p", { staticClass: "card-text" }, [
-                        _vm._v(_vm._s(post.content)),
-                      ]),
-                      _vm._v(" "),
-                      _c(
-                        "router-link",
-                        {
-                          staticClass: "btn btn-primary mt-auto",
-                          attrs: {
-                            to: { name: "show", params: { slug: post.slug } },
+                _c("div", {}, [
+                  _c("div", { staticClass: "card h-100 p-5" }, [
+                    _c(
+                      "div",
+                      { staticClass: "card-body d-flex flex-column" },
+                      [
+                        _c("h5", { staticClass: "card-title" }, [
+                          _vm._v(_vm._s(post.title)),
+                        ]),
+                        _vm._v(" "),
+                        _c("p", { staticClass: "card-text" }, [
+                          _vm._v(_vm._s(post.content)),
+                        ]),
+                        _vm._v(" "),
+                        _c(
+                          "router-link",
+                          {
+                            staticClass: "btn btn-primary mt-auto",
+                            attrs: {
+                              to: { name: "show", params: { slug: post.slug } },
+                            },
                           },
-                        },
-                        [_vm._v("Read More")]
-                      ),
-                    ],
-                    1
-                  ),
+                          [_vm._v("Read More")]
+                        ),
+                      ],
+                      1
+                    ),
+                  ]),
                 ]),
               ]
             )
@@ -28120,7 +28124,7 @@ var staticRenderFns = [
     return _c(
       "button",
       {
-        staticClass: "carousel-control-prev bg-dark",
+        staticClass: "carousel-control-prev",
         attrs: {
           type: "button",
           "data-bs-target": "#carouselExampleControls",
@@ -28144,7 +28148,7 @@ var staticRenderFns = [
     return _c(
       "button",
       {
-        staticClass: "carousel-control-next bg-dark",
+        staticClass: "carousel-control-next",
         attrs: {
           type: "button",
           "data-bs-target": "#carouselExampleControls",
