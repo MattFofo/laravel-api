@@ -57,14 +57,15 @@ const router = new VueRouter({
             component: PageAbout
         },
         {
-            path: '/index',
+            path: '/posts',
             name: 'index',
             component: PostIndex
         },
         {
-            path: '/show/:slug',
+            path: '/posts/:slug',
             name: 'show',
-            component: PostShow
+            component: PostShow,
+            props: true
         },
     ],
 })
