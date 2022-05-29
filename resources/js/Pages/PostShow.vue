@@ -21,7 +21,13 @@ export default {
     },
     mounted() {
         Axios.get(this.baseURL + '/' + this.slug)
-            .then(res => this.post = res.data.response.data);
+            .then(res => {
+                if (res.data.success) {
+                    this.post = res.data.response.data;
+                } else {
+                    this.$router.push({name: 'page404'});
+                }
+            });
     }
 }
 </script>

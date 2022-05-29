@@ -40,12 +40,19 @@ import PageHome from './Pages/PageHome.vue';
 import PageAbout from './Pages/PageAbout.vue';
 import PostIndex from './Pages/PostIndex.vue';
 import PostShow from './Pages/PostShow.vue';
+import Page404 from './Pages/Page404.vue';
+
 
 
 
 const router = new VueRouter({
     mode: 'history',
     routes: [
+        {
+            path: '*',
+            name: 'Page404',
+            component: Page404,
+        },
         {
           path: '/',
           name: 'home',
