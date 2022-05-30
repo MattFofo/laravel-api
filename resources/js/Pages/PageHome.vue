@@ -14,9 +14,17 @@
 
 
                         <div class="card-body d-flex flex-column">
-                            <h5 class="card-title">{{ post.title }}</h5>
+                            <h2 class="card-title">{{ post.title }}</h2>
+                            <div class="author">
+                                By <b>{{ post.user.name }}</b>
+                            </div>
+                            <div class="category">
+                                <span class="badge bg-primary">{{ post.category.name }}</span>
+                            </div>
+                            <div class="tags">
+                                <span class="badge bg-secondary" v-for="tag in post.tags" :key="tag.id">{{ tag.name }}</span>
+                            </div>
                             <p class="card-text">{{ post.content }}</p>
-                            <!-- <a :href="'/posts/' + post.slug" class="btn btn-primary mt-auto">Mooore</a> -->
                             <router-link :to="{name: 'show', params: {slug: post.slug}}" class="btn btn-primary mt-auto">Read More</router-link>
                         </div>
                     </div>

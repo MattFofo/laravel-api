@@ -19,7 +19,7 @@ class PostController extends Controller
             return response()->json([
                 'success'   => true,
                 'response'  => [
-                    'data'  => Post::inRandomOrder()->limit(3)->get()
+                    'data'  => Post::with(['category', 'user', 'tags'])->inRandomOrder()->limit(3)->get()
                 ],
             ]);
 
@@ -38,7 +38,7 @@ class PostController extends Controller
             }
         }
 
-        $posts = Post::paginate(20);
+        $posts = Post::with(['category', 'user', 'tags'])->paginate(20);
 
         return response()->json([
             'success'   => true,

@@ -5195,6 +5195,14 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'ContainerPosts',
   data: function data() {
@@ -5275,11 +5283,18 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
       baseUrl: 'http://127.0.0.1:8000/api/v1/posts',
       posts: [],
+      maxContent: 250,
       nNewPage: null,
       prevPageUrl: null,
       nextPageUrl: null,
@@ -5307,6 +5322,20 @@ __webpack_require__.r(__webpack_exports__);
           _this.nLastPage = res.data.response.last_page;
           _this.nNewPage = null;
         });
+      }
+    },
+    // getExcerpt(strContent) {
+    //     if (strContent.lenght > this.maxContent) {
+    //         return strContent.substring(0, this.maxContent) + ' ...'; TODO: non funziona anche se mi sembra identico al metodo sotto
+    //     } else {
+    //         return strContent;
+    //     }
+    // },
+    getExcerpt: function getExcerpt(content) {
+      if (content.length > this.maxContent) {
+        return content.substring(0, this.maxContent) + ' . . .';
+      } else {
+        return content;
       }
     }
   }
@@ -28918,9 +28947,36 @@ var render = function () {
                       "div",
                       { staticClass: "card-body d-flex flex-column" },
                       [
-                        _c("h5", { staticClass: "card-title" }, [
+                        _c("h2", { staticClass: "card-title" }, [
                           _vm._v(_vm._s(post.title)),
                         ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "author" }, [
+                          _vm._v("\n                                By "),
+                          _c("b", [_vm._v(_vm._s(post.user.name))]),
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "category" }, [
+                          _c("span", { staticClass: "badge bg-primary" }, [
+                            _vm._v(_vm._s(post.category.name)),
+                          ]),
+                        ]),
+                        _vm._v(" "),
+                        _c(
+                          "div",
+                          { staticClass: "tags" },
+                          _vm._l(post.tags, function (tag) {
+                            return _c(
+                              "span",
+                              {
+                                key: tag.id,
+                                staticClass: "badge bg-secondary",
+                              },
+                              [_vm._v(_vm._s(tag.name))]
+                            )
+                          }),
+                          0
+                        ),
                         _vm._v(" "),
                         _c("p", { staticClass: "card-text" }, [
                           _vm._v(_vm._s(post.content)),
@@ -29036,8 +29092,36 @@ var render = function () {
               "div",
               { staticClass: "card-body d-flex flex-column" },
               [
-                _c("h5", { staticClass: "card-title" }, [
+                _c("h2", { staticClass: "card-title" }, [
                   _vm._v(_vm._s(post.title)),
+                ]),
+                _vm._v(" "),
+                _c("div", [
+                  _vm._v("By "),
+                  _c("b", [_vm._v(_vm._s(post.user.name))]),
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "category" }, [
+                  _c("span", { staticClass: "badge bg-primary" }, [
+                    _vm._v(_vm._s(post.category.name)),
+                  ]),
+                ]),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  { staticClass: "tags" },
+                  _vm._l(post.tags, function (tag) {
+                    return _c(
+                      "span",
+                      { key: tag.id, staticClass: "badge bg-secondary" },
+                      [_vm._v(_vm._s(tag.name))]
+                    )
+                  }),
+                  0
+                ),
+                _vm._v(" "),
+                _c("p", { staticClass: "card-text" }, [
+                  _vm._v(_vm._s(_vm.getExcerpt(post.content))),
                 ]),
                 _vm._v(" "),
                 _c(

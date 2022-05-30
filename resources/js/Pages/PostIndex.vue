@@ -5,9 +5,15 @@
                 <div class="card h-100">
                     <!-- <img src="..." class="card-img-top" alt="..."> -->
                     <div class="card-body d-flex flex-column">
-                        <h5 class="card-title">{{ post.title }}</h5>
-                        <!-- <p class="card-text">{{ post.content }}</p> -->
-                        <!-- <a :href="'/posts/' + post.slug" class="btn btn-primary mt-auto">Mooore</a> -->
+                        <h2 class="card-title">{{ post.title }}</h2>
+                        <div>By <b>{{ post.user.name }}</b></div>
+                        <div class="category">
+                            <span class="badge bg-primary">{{ post.category.name }}</span>
+                        </div>
+                        <div class="tags">
+                            <span class="badge bg-secondary" v-for="tag in post.tags" :key="tag.id">{{ tag.name }}</span>
+                        </div>
+                        <p class="card-text">{{ getExcerpt(post.content) }}</p>
                         <router-link :to="{name: 'show', params: {slug: post.slug}}" class="btn btn-primary mt-auto">Read More</router-link>
                     </div>
                 </div>
@@ -56,6 +62,7 @@ export default {
         return {
             baseUrl: 'http://127.0.0.1:8000/api/v1/posts',
             posts: [],
+            maxContent: 250,
 
             nNewPage: null,
             prevPageUrl: null,
@@ -86,6 +93,20 @@ export default {
                 });
             }
         },
+        // getExcerpt(strContent) {
+        //     if (strContent.lenght > this.maxContent) {
+        //         return strContent.substring(0, this.maxContent) + ' ...'; TODO: non funziona anche se mi sembra identico al metodo sotto
+        //     } else {
+        //         return strContent;
+        //     }
+        // },
+        getExcerpt(content) {
+            if (content.length > this.maxContent) {
+                return content.substring(0, this.maxContent) + ' . . .';
+            } else {
+                return content;
+            }
+        }
     }
 }
 </script>
