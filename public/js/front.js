@@ -29196,7 +29196,10 @@ var render = function () {
                 _c("div", {}, [
                   _vm.post.image
                     ? _c("img", {
-                        attrs: { src: _vm.post.image, alt: _vm.post.title },
+                        attrs: {
+                          src: "public/storage/" + _vm.post.image,
+                          alt: _vm.post.title,
+                        },
                       })
                     : _vm._e(),
                 ]),

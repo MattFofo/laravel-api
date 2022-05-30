@@ -41,11 +41,8 @@ class PostController extends Controller
         return view('admin.posts.index', compact('posts'));
     }
 
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
+
     public function index()
     {
         $posts = Post::paginate(15);
@@ -53,11 +50,8 @@ class PostController extends Controller
         return view('admin.posts.index', compact('posts'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
+
     public function create()
     {
         $categories = Category::all();
@@ -69,12 +63,8 @@ class PostController extends Controller
         ]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+
+
     public function store(Request $request)
     {
 
@@ -92,6 +82,7 @@ class PostController extends Controller
         $postData['slug'] = Post::validateSlug($postData['slug']);
 
         $post = Post::create($postData);
+        $post->tags()->attach($postData['tags']);
 
         return redirect()->route('admin.posts.show', $post);
 

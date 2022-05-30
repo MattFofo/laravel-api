@@ -13,32 +13,52 @@
 
                 {{-- image --}}
                 @if ($post->image)
-                    <img src="{{ asset('storage/' . $post->image) }}" alt="{{ $post->title }}" class="img-fluid">
+                    <div class="col">
+                        <img src="{{ asset('storage/' . $post->image) }}" alt="{{ $post->title }}" class="img-fluid">
+                    </div>
                 @endif
 
-                <h1>{{ $post->title }}</h1>
-                <b>{{ $post->user->name }}</b>
-                <small>Data pubblicazione: {{ date('d/m/Y' , strtotime($post->created_at)) }}</small>
+                <div class="col">
+                    <h1>{{ $post->title }}</h1>
+                    <b>{{ $post->user->name }}</b>
+                    <small>Data pubblicazione: {{ date('d/m/Y' , strtotime($post->created_at)) }}</small>
+                </div>
+
 
                 {{-- if post updated --}}
                 @if ($post->created_at != $post->updated_at)
-                    <small>Data ultima modifica: {{ date('d/m/Y' , strtotime($post->updated_at)) }}</small>
+                    <div class="col">
+                        <small>Data ultima modifica: {{ date('d/m/Y' , strtotime($post->updated_at)) }}</small>
+                    </div>
                 @endif
 
                 {{-- info user --}}
                 @if ($post->user->infouser && $post->user->infouser->phone)
-                    <b>tel. {{ $post->user->infouser->phone }}</b>
-                    <h4><span class="badge bg-primary">{{ $post->category->name }}</span></h4>
+                    <div class="col">
+                        <b>tel. {{ $post->user->infouser->phone }}</b>
+                        <h4><span class="badge bg-primary">{{ $post->category->name }}</span></h4>
+                    </div>
+                @endif
+
+                {{-- category --}}
+                @if ($post->category)
+                <div class="col">
+                    <span class="badge bg-primary">{{ $post->category->name }}</span>
+                </div>
                 @endif
 
                 {{-- tags --}}
                 @if ($post->tags)
-                    @foreach ($post->tags as $tag)
-                        <span class="badge bg-secondary">{{ $tag->name }}</span>
-                    @endforeach
+                    <div class="col">
+                        @foreach ($post->tags as $tag)
+                            <span class="badge bg-secondary">{{ $tag->name }}</span>
+                        @endforeach
+                    </div>
                 @endif
 
-                <p>{{ $post->content }}</p>
+                <div class="col">
+                    <p>{{ $post->content }}</p>
+                </div>
             </div>
         </div>
     </div>

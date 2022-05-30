@@ -5,7 +5,7 @@
             <div class="col">
                 <div class="post" v-if="post">
                     <div class="">
-                        <img :src="post.image" :alt="post.title" v-if="post.image">
+                        <img :src="'public/storage/' + post.image" :alt="post.title" v-if="post.image">
                     </div>
 
                     <h1>{{ post.title }}</h1>
