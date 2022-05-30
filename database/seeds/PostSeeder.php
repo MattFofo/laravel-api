@@ -24,7 +24,8 @@ class PostSeeder extends Seeder
                 'category_id'   => Category::inRandomOrder()->first()->id,
                 'title'         => $title,
                 'content'       => $faker->text(rand(200, 1000)),
-                'slug'          => Post::generateSlug($title)
+                'slug'          => Post::generateSlug($title),
+                'image'         => "https://picsum.photos/200/300?random=$i"
             ];
 
             Post::create($postData);

@@ -13,7 +13,7 @@
 
                 {{-- image --}}
                 @if ($post->image)
-                    <img src="{{ asset('storage/' . $post->image) }}" alt="{{ $post->title }}">
+                    <img src="{{ asset('storage/' . $post->image) }}" alt="{{ $post->title }}" class="img-fluid">
                 @endif
 
                 <h1>{{ $post->title }}</h1>

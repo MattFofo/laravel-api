@@ -4,6 +4,7 @@
         <div class="row">
             <div class="col">
                 <div class="post" v-if="post">
+                    <img :src="post.image" :alt="post.title" v-if="post.image">
                     <h1>{{ post.title }}</h1>
                     <b>By {{ post.user.name }}</b>
                     <div class="tags">
