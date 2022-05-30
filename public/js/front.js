@@ -5188,6 +5188,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'ContainerPosts',
   data: function data() {
@@ -5262,6 +5268,9 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Page404_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Page404.vue */ "./resources/js/Pages/Page404.vue");
+//
+//
+//
 //
 //
 //
@@ -28832,6 +28841,17 @@ var render = function () {
               [
                 _c("div", {}, [
                   _c("div", { staticClass: "card h-100 p-5" }, [
+                    _c("div", { staticClass: "row justify-content-center" }, [
+                      _c("div", { staticClass: "col-10" }, [
+                        post.image
+                          ? _c("img", {
+                              staticClass: "img-fluid",
+                              attrs: { src: post.image, alt: post.title },
+                            })
+                          : _vm._e(),
+                      ]),
+                    ]),
+                    _vm._v(" "),
                     _c(
                       "div",
                       { staticClass: "card-body d-flex flex-column" },
@@ -29010,11 +29030,13 @@ var render = function () {
         _c("div", { staticClass: "col" }, [
           _vm.post
             ? _c("div", { staticClass: "post" }, [
-                _vm.post.image
-                  ? _c("img", {
-                      attrs: { src: _vm.post.image, alt: _vm.post.title },
-                    })
-                  : _vm._e(),
+                _c("div", {}, [
+                  _vm.post.image
+                    ? _c("img", {
+                        attrs: { src: _vm.post.image, alt: _vm.post.title },
+                      })
+                    : _vm._e(),
+                ]),
                 _vm._v(" "),
                 _c("h1", [_vm._v(_vm._s(_vm.post.title))]),
                 _vm._v(" "),

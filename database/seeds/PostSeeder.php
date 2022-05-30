@@ -25,7 +25,7 @@ class PostSeeder extends Seeder
                 'title'         => $title,
                 'content'       => $faker->text(rand(200, 1000)),
                 'slug'          => Post::generateSlug($title),
-                'image'         => "https://picsum.photos/200/300?random=$i"
+                'image'         => "https://picsum.photos/820/312?random=$i"
             ];
 
             Post::create($postData);
