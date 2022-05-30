@@ -4,7 +4,7 @@
 @section('content')
     <div class="container">
 
-        <form method="POST" action="{{ route('admin.posts.store') }}">
+        <form method="POST" action="{{ route('admin.posts.store') }}" enctype="multipart/form-data">
             @csrf
             {{-- title --}}
             <div class="form-group mb-3">
@@ -38,7 +38,7 @@
             @enderror
 
             {{-- tags --}}
-            <fieldset>
+            <fieldset class="form-group mb-3">
                 <legend>Tags</legend>
                 @foreach ($tags as $tag)
                     <div class="form-check d-inline-block">
@@ -50,6 +50,15 @@
                 @endforeach
             </fieldset>
             @error('tags')
+                <div class="alert alert-danger">{{ $message }}</div>
+            @enderror
+
+            {{-- image --}}
+            <div class="form-group mb-3">
+                <label for="image">{{ __('Upload an image') }}</label>
+                <input type="file" class="form-control" id="image" name="image" placeholder="image" value="{{ old('image')}}" accept="image/*">
+            </div>
+            @error('image')
                 <div class="alert alert-danger">{{ $message }}</div>
             @enderror
 
