@@ -8,6 +8,7 @@
                         <div class="d-flex">
                             <div class="m-auto">
                                 <img :src="post.image" class="img-fluid" :alt="post.title" v-if="post.image">
+                                <img src="https://picsum.photos/800/300" alt="" v-else>
                             </div>
                         </div>
 

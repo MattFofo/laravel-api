@@ -75,6 +75,9 @@ class PostController extends Controller
         $post = Post::with(['category', 'user', 'tags'])->where('slug', $slug)->first();
 
         if ($post) {
+            if ($post->image) {
+                $post->image = asset('storage/' . $post->image);
+            }
             return response()->json([
                 'success'   => true,
                 'response'  => [
