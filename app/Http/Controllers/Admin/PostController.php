@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers\Admin;
 
-use Illuminate\Support\Facades\Auth;
-use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
-use Illuminate\Validation\Rule;
+use App\Tag;
 use App\Post;
 use App\Category;
-use App\Tag;
+use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class PostController extends Controller
 {
@@ -79,7 +80,14 @@ class PostController extends Controller
 
         $request->validate($this->getValidators(null));  //TODO: blocca l'esecuzione se la slug non è unica prima che il metodo validateSlug() possa cambiarla
 
-        $postData = $request->all() + ['user_id' => Auth::id()];
+        $formData = $request->all();
+
+        $img_path = Storage::put('uploads', $formData['image']);
+
+        $postData = $formData + [
+            'user_id' => Auth::id(),
+            'image'   => $img_path
+        ];
 
         $postData['slug'] = Post::validateSlug($postData['slug']);
 
