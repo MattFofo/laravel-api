@@ -5261,6 +5261,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _Page404_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Page404.vue */ "./resources/js/Pages/Page404.vue");
 //
 //
 //
@@ -5277,13 +5278,21 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'PostShow',
   props: ['slug'],
+  components: {
+    Page404: _Page404_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
+  },
   data: function data() {
     return {
       baseURL: 'http://127.0.0.1:8000/api/v1/posts',
-      post: ''
+      post: null,
+      is404: false
     };
   },
   created: function created() {
@@ -5293,9 +5302,8 @@ __webpack_require__.r(__webpack_exports__);
       if (res.data.success) {
         _this.post = res.data.response.data;
       } else {
-        _this.$router.push({
-          name: 'page404'
-        });
+        //this.$router.push({name: 'page404'});
+        _this.is404 = true;
       }
     });
   }
@@ -28991,32 +28999,43 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "container" }, [
-    _c("div", { staticClass: "row" }, [
-      _c("div", { staticClass: "col" }, [
-        _c("h1", [_vm._v(_vm._s(_vm.post.title))]),
-        _vm._v(" "),
-        _c("b", [_vm._v("By " + _vm._s(_vm.post.user.name))]),
-        _vm._v(" "),
-        _c(
-          "div",
-          { staticClass: "tags" },
-          _vm._l(_vm.post.tags, function (tag) {
-            return _c(
-              "span",
-              { key: tag.id, staticClass: "badge bg-primary" },
-              [_vm._v(_vm._s(tag.name))]
-            )
-          }),
-          0
-        ),
-        _vm._v(" "),
-        _c("b", [_vm._v(_vm._s(_vm.post.category.name))]),
-        _vm._v(" "),
-        _c("p", [_vm._v(_vm._s(_vm.post.content))]),
+  return _c(
+    "div",
+    { staticClass: "container" },
+    [
+      _vm.is404 ? _c("Page404") : _vm._e(),
+      _vm._v(" "),
+      _c("div", { staticClass: "row" }, [
+        _c("div", { staticClass: "col" }, [
+          _vm.post
+            ? _c("div", { staticClass: "post" }, [
+                _c("h1", [_vm._v(_vm._s(_vm.post.title))]),
+                _vm._v(" "),
+                _c("b", [_vm._v("By " + _vm._s(_vm.post.user.name))]),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  { staticClass: "tags" },
+                  _vm._l(_vm.post.tags, function (tag) {
+                    return _c(
+                      "span",
+                      { key: tag.id, staticClass: "badge bg-primary" },
+                      [_vm._v(_vm._s(tag.name))]
+                    )
+                  }),
+                  0
+                ),
+                _vm._v(" "),
+                _c("b", [_vm._v(_vm._s(_vm.post.category.name))]),
+                _vm._v(" "),
+                _c("p", [_vm._v(_vm._s(_vm.post.content))]),
+              ])
+            : _vm._e(),
+        ]),
       ]),
-    ]),
-  ])
+    ],
+    1
+  )
 }
 var staticRenderFns = []
 render._withStripped = true

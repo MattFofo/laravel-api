@@ -13,6 +13,7 @@ class PostController extends Controller
     public function index(Request $request)
     {
         $attributes = $request->all();
+
         if (array_key_exists('home', $attributes)) {
 
             return response()->json([
@@ -22,6 +23,19 @@ class PostController extends Controller
                 ],
             ]);
 
+        }
+
+        $posts = Post::whereRaw('1 = 1');
+
+        if (array_key_exists('tags', $attributes)) {
+
+            $tags = $attributes['tags'];
+
+            foreach ($tags as $tag) {
+                $post = $post->whereHas('tags', function ($query) use ($tag) {
+                    $query->where('name', $tag);
+                });
+            }
         }
 
         $posts = Post::paginate(20);

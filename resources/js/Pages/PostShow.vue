@@ -1,27 +1,36 @@
 <template>
     <div class="container">
+        <Page404 v-if="is404" />
         <div class="row">
             <div class="col">
-                <h1>{{ post.title }}</h1>
-                <b>By {{ post.user.name }}</b>
-                <div class="tags">
-                    <span class="badge bg-primary" v-for="tag in post.tags" :key="tag.id">{{ tag.name }}</span>
+                <div class="post" v-if="post">
+                    <h1>{{ post.title }}</h1>
+                    <b>By {{ post.user.name }}</b>
+                    <div class="tags">
+                        <span class="badge bg-primary" v-for="tag in post.tags" :key="tag.id">{{ tag.name }}</span>
+                    </div>
+                    <b>{{ post.category.name }}</b>
+                    <p>{{ post.content }}</p>
                 </div>
-                <b>{{ post.category.name }}</b>
-                <p>{{ post.content }}</p>
             </div>
         </div>
     </div>
 </template>
 
 <script>
+import Page404 from "./Page404.vue";
+
 export default {
     name: 'PostShow',
     props: ['slug'],
+    components: {
+        Page404
+    },
     data() {
         return {
             baseURL: 'http://127.0.0.1:8000/api/v1/posts',
-            post: '',
+            post: null,
+            is404: false,
         }
     },
     created() {
@@ -30,7 +39,8 @@ export default {
                 if (res.data.success) {
                     this.post = res.data.response.data;
                 } else {
-                    this.$router.push({name: 'page404'});
+                    //this.$router.push({name: 'page404'});
+                    this.is404 = true;
                 }
             });
     }
