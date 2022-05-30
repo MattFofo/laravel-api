@@ -59,6 +59,15 @@
                 <div class="alert alert-danger">{{ $message }}</div>
             @enderror
 
+            {{-- image --}}
+            <div class="form-group mb-3">
+                <label for="image">{{ __('Upload an image') }}</label>
+                <input type="file" class="form-control" id="image" name="image" placeholder="image" value="{{ old('image')}}" accept="image/*">
+            </div>
+            @error('image')
+                <div class="alert alert-danger">{{ $message }}</div>
+            @enderror
+
 
             {{-- description --}}
             <div class="form-group mb-3">

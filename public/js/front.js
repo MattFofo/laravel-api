@@ -5240,19 +5240,86 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
       baseURL: 'http://127.0.0.1:8000/api/v1/posts',
-      posts: []
+      posts: [],
+      nNewPage: null,
+      prevPageUrl: null,
+      nextPageUrl: null,
+      firstPageUrl: null,
+      lastPageUrl: null,
+      nCurrentPage: null,
+      nLastPage: null
     };
   },
   created: function created() {
     var _this = this;
 
     Axios.get(this.baseURL).then(function (res) {
-      return _this.posts = res.data.response.data;
+      _this.posts = res.data.response.data;
+      _this.prevPageUrl = res.data.response.prev_page_url;
+
+      TODO: _this.nextPageUrl = res.data.response.next_page_url;
+
+      _this.firstPageUrl = res.data.response.first_page_url;
+      _this.lastPageUrl = res.data.response.last_page_url;
+      _this.nCurrentPage = res.data.response.current_page;
+      _this.nLastPage = res.data.response.last_page;
+      _this.nNewPage = null;
     });
+  },
+  methods: {
+    getData: function getData(url) {
+      var _this2 = this;
+
+      TODO: if (url) {
+        Axios.get(url).then(function (res) {
+          _this2.prevPageUrl = res.data.response.prev_page_url;
+          _this2.nextPageUrl = res.data.response.next_page_url;
+          _this2.firstPageUrl = res.data.response.first_page_url;
+          _this2.lastPageUrl = res.data.response.last_page_url;
+          _this2.nCurrentPage = res.data.response.current_page;
+          _this2.nLastPage = res.data.response.last_page;
+          _this2.nNewPage = null;
+        });
+      }
+    }
   }
 });
 
@@ -28996,6 +29063,117 @@ var render = function () {
       }),
       0
     ),
+    _vm._v(" "),
+    _vm._v(" TODO:\n    "),
+    _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "text-center" }, [
+        _vm._v(
+          "\n            Page " +
+            _vm._s(_vm.nCurrentPage) +
+            " of " +
+            _vm._s(_vm.nLastPage) +
+            "\n        "
+        ),
+      ]),
+      _vm._v(" "),
+      _c("nav", { attrs: { "aria-label": "Page navigation example" } }, [
+        _c("ul", { staticClass: "pagination justify-content-center" }, [
+          _c(
+            "li",
+            {
+              staticClass: "page-item",
+              class: { disabled: _vm.nCurrentPage == 1 },
+              on: {
+                click: function ($event) {
+                  return _vm.getData(_vm.firstPageUrl)
+                },
+              },
+            },
+            [_c("a", { staticClass: "page-link" }, [_vm._v("First")])]
+          ),
+          _vm._v(" "),
+          _c(
+            "li",
+            {
+              staticClass: "page-item",
+              class: { disabled: !_vm.prevPageUrl },
+              on: {
+                click: function ($event) {
+                  return _vm.getData(_vm.prevPageUrl)
+                },
+              },
+            },
+            [_c("a", { staticClass: "page-link" }, [_vm._v("Previous")])]
+          ),
+          _vm._v(" "),
+          _c("li", { staticClass: "page-item" }, [
+            _c(
+              "form",
+              {
+                on: {
+                  submit: function ($event) {
+                    $event.preventDefault()
+                    return _vm.getData(
+                      _vm.baseApiUrl + "/?page=" + _vm.nNewPage
+                    )
+                  },
+                },
+              },
+              [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.nNewPage,
+                      expression: "nNewPage",
+                    },
+                  ],
+                  attrs: { type: "text", name: "", id: "" },
+                  domProps: { value: _vm.nNewPage },
+                  on: {
+                    input: function ($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.nNewPage = $event.target.value
+                    },
+                  },
+                }),
+              ]
+            ),
+          ]),
+          _vm._v(" "),
+          _c(
+            "li",
+            {
+              staticClass: "page-item",
+              class: { disabled: !_vm.nextPageUrl },
+              on: {
+                click: function ($event) {
+                  return _vm.getData(_vm.nextPageUrl)
+                },
+              },
+            },
+            [_c("a", { staticClass: "page-link" }, [_vm._v("Next")])]
+          ),
+          _vm._v(" "),
+          _c(
+            "li",
+            {
+              staticClass: "page-item",
+              class: { disabled: _vm.nCurrentPage == _vm.nLastPage },
+              on: {
+                click: function ($event) {
+                  return _vm.getData(_vm.lastPageUrl)
+                },
+              },
+            },
+            [_c("a", { staticClass: "page-link" }, [_vm._v("Last")])]
+          ),
+        ]),
+      ]),
+    ]),
   ])
 }
 var staticRenderFns = []
