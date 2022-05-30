@@ -5277,7 +5277,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      baseURL: 'http://127.0.0.1:8000/api/v1/posts',
+      baseUrl: 'http://127.0.0.1:8000/api/v1/posts',
       posts: [],
       nNewPage: null,
       prevPageUrl: null,
@@ -5289,34 +5289,22 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   created: function created() {
-    var _this = this;
-
-    Axios.get(this.baseURL).then(function (res) {
-      _this.posts = res.data.response.data;
-      _this.prevPageUrl = res.data.response.prev_page_url;
-
-      TODO: _this.nextPageUrl = res.data.response.next_page_url;
-
-      _this.firstPageUrl = res.data.response.first_page_url;
-      _this.lastPageUrl = res.data.response.last_page_url;
-      _this.nCurrentPage = res.data.response.current_page;
-      _this.nLastPage = res.data.response.last_page;
-      _this.nNewPage = null;
-    });
+    this.getData(this.baseUrl);
   },
   methods: {
     getData: function getData(url) {
-      var _this2 = this;
+      var _this = this;
 
-      TODO: if (url) {
+      if (url) {
         Axios.get(url).then(function (res) {
-          _this2.prevPageUrl = res.data.response.prev_page_url;
-          _this2.nextPageUrl = res.data.response.next_page_url;
-          _this2.firstPageUrl = res.data.response.first_page_url;
-          _this2.lastPageUrl = res.data.response.last_page_url;
-          _this2.nCurrentPage = res.data.response.current_page;
-          _this2.nLastPage = res.data.response.last_page;
-          _this2.nNewPage = null;
+          _this.posts = res.data.response.data;
+          _this.prevPageUrl = res.data.response.prev_page_url;
+          _this.nextPageUrl = res.data.response.next_page_url;
+          _this.firstPageUrl = res.data.response.first_page_url;
+          _this.lastPageUrl = res.data.response.last_page_url;
+          _this.nCurrentPage = res.data.response.current_page;
+          _this.nLastPage = res.data.response.last_page;
+          _this.nNewPage = null;
         });
       }
     }
@@ -28908,8 +28896,8 @@ var render = function () {
               [
                 _c("div", {}, [
                   _c("div", { staticClass: "card h-100 p-5" }, [
-                    _c("div", { staticClass: "row justify-content-center" }, [
-                      _c("div", { staticClass: "col-10" }, [
+                    _c("div", { staticClass: "d-flex" }, [
+                      _c("div", { staticClass: "m-auto" }, [
                         post.image
                           ? _c("img", {
                               staticClass: "img-fluid",
@@ -29064,7 +29052,6 @@ var render = function () {
       0
     ),
     _vm._v(" "),
-    _vm._v(" TODO:\n    "),
     _c("div", { staticClass: "row" }, [
       _c("div", { staticClass: "text-center" }, [
         _vm._v(
@@ -29113,9 +29100,7 @@ var render = function () {
                 on: {
                   submit: function ($event) {
                     $event.preventDefault()
-                    return _vm.getData(
-                      _vm.baseApiUrl + "/?page=" + _vm.nNewPage
-                    )
+                    return _vm.getData(_vm.baseUrl + "/?page=" + _vm.nNewPage)
                   },
                 },
               },

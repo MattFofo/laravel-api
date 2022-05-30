@@ -14,7 +14,7 @@
             </div>
         </div>
 
-        <!-- PAGINATION --> TODO:
+        <!-- PAGINATION -->
         <div class="row">
             <div class="text-center">
                 Page {{ nCurrentPage }} of {{ nLastPage }}
@@ -24,20 +24,20 @@
                     <li class="page-item" :class="{disabled: nCurrentPage == 1}" @click="getData(firstPageUrl)">
                         <a class="page-link">First</a>
                     </li>
+
+                    <!-- link previous page -->
                     <li class="page-item" :class="{disabled: !prevPageUrl}" @click="getData(prevPageUrl)">
                         <a class="page-link">Previous</a>
                     </li>
 
-                    <!-- <li class="page-item"><a class="page-link" href="#">1</a></li>
-                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                    <li class="page-item"><a class="page-link" href="#">3</a></li> -->
-
+                    <!-- vai direttamente alla pagina n -->
                     <li class="page-item">
-                        <form @submit.prevent="getData(baseApiUrl + '/?page=' + nNewPage)">
+                        <form @submit.prevent="getData(baseUrl + '/?page=' + nNewPage)">
                             <input type="text" name="" id="" v-model="nNewPage">
                         </form>
                     </li>
 
+                    <!-- link next page -->
                     <li class="page-item" :class="{disabled: !nextPageUrl}" @click="getData(nextPageUrl)">
                         <a class="page-link">Next</a>
                     </li>
@@ -54,7 +54,7 @@
 export default {
     data() {
         return {
-            baseURL: 'http://127.0.0.1:8000/api/v1/posts',
+            baseUrl: 'http://127.0.0.1:8000/api/v1/posts',
             posts: [],
 
             nNewPage: null,
@@ -67,24 +67,15 @@ export default {
         }
     },
     created() {
-        Axios.get(this.baseURL)
-            .then(res => {
-                this.posts = res.data.response.data
-
-                this.prevPageUrl = res.data.response.prev_page_url;     TODO:
-                this.nextPageUrl = res.data.response.next_page_url;
-                this.firstPageUrl = res.data.response.first_page_url;
-                this.lastPageUrl = res.data.response.last_page_url;
-                this.nCurrentPage = res.data.response.current_page;
-                this.nLastPage = res.data.response.last_page;
-                this.nNewPage = null;
-            })
+        this.getData(this.baseUrl);
     },
     methods: {
-        getData(url) {                                                  TODO:
+        getData(url) {
             if (url) {
                 Axios.get(url)
                 .then(res => {
+                    this.posts =  res.data.response.data;
+
                     this.prevPageUrl = res.data.response.prev_page_url;
                     this.nextPageUrl = res.data.response.next_page_url;
                     this.firstPageUrl = res.data.response.first_page_url;

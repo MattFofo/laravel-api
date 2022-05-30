@@ -5,8 +5,8 @@
             <div  v-for="post in posts" :key="post.id" class="carousel-item" :class="(post == posts[0]) ? 'active' : '' ">
                 <div class="">
                     <div class="card h-100 p-5">
-                        <div class="row justify-content-center">
-                            <div class="col-10">
+                        <div class="d-flex">
+                            <div class="m-auto">
                                 <img :src="post.image" class="img-fluid" :alt="post.title" v-if="post.image">
                             </div>
                         </div>
