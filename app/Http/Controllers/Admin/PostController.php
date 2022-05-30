@@ -84,10 +84,10 @@ class PostController extends Controller
 
         $img_path = Storage::put('uploads', $formData['image']);
 
-        $postData = $formData + [
+        $postData = [
             'user_id' => Auth::id(),
             'image'   => $img_path
-        ];
+        ] + $formData;
 
         $postData['slug'] = Post::validateSlug($postData['slug']);
 

@@ -20,7 +20,8 @@ class Post extends Model
         'content',
         'slug',
         'user_id',
-        'category_id'
+        'category_id',
+        'image'
     ];
 
     //metodo per generare slug unico da stringa

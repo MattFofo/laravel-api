@@ -11,6 +11,11 @@
                     </div>
                 @endif
 
+                {{-- image --}}
+                @if ($post->image)
+                    <img src="{{ asset('storage/' . $post->image) }}" alt="{{ $post->title }}">
+                @endif
+
                 <h1>{{ $post->title }}</h1>
                 <b>{{ $post->user->name }}</b>
                 <small>Data pubblicazione: {{ date('d/m/Y' , strtotime($post->created_at)) }}</small>
