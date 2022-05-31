@@ -18,7 +18,8 @@ class PostController extends Controller
         'slug'          => 'required|unique:posts|max:100',
         'content'       => 'required',
         'category_id'   => 'required|exists:Category,id',
-        'tag'           => 'exists:Tag,id'
+        'tag'           => 'exists:Tag,id',
+        'image'         => 'nullable|image'
     ];
 
     private function getValidators($model) {
@@ -31,7 +32,8 @@ class PostController extends Controller
             ],
             'category_id'   => 'required|exists:App\Category,id',
             'content'       => 'required',
-            'tags'          => 'exists:App\Tag,id'
+            'tags'          => 'exists:App\Tag,id',
+            'image'         => 'nullable|image'
         ];
     }
 
@@ -72,7 +74,14 @@ class PostController extends Controller
 
         $formData = $request->all();
 
-        $img_path = Storage::put('uploads', $formData['image']);
+
+        $img_path = null;
+
+        if (array_key_exists('image', $formData)) {
+            $img_path = Storage::put('uploads', $formData['image']);
+        } else {
+            $img_path = null;
+        }
 
         $postData = [
             'user_id' => Auth::id(),
