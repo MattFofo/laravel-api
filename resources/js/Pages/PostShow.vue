@@ -10,7 +10,7 @@
                     </div>
 
                     <h1>{{ post.title }}</h1>
-                    <b>By {{ post.user.name }}</b>
+                    <b><span class="text-muted">By </span> {{ post.user.name }}</b>
                     <div class="tags">
                         <span class="badge bg-primary" v-for="tag in post.tags" :key="tag.id">{{ tag.name }}</span>
                     </div>

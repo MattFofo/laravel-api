@@ -1,5 +1,6 @@
 <template>
     <div class="container">
+        <h1>Tutti i nostri Posts</h1>
         <div class="row g-3">
             <div class="col-4" v-for="post in posts" :key="post.id">
                 <div class="card h-100">

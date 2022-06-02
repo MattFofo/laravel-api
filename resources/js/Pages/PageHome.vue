@@ -1,5 +1,6 @@
 <template>
 <div class="container">
+    <h1>Random Posts</h1>
     <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-inner">
             <div  v-for="post in posts" :key="post.id" class="carousel-item" :class="(post == posts[0]) ? 'active' : '' ">

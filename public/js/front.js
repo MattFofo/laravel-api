@@ -5203,6 +5203,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'ContainerPosts',
   data: function data() {
@@ -5231,6 +5232,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
 //
 //
 //
@@ -28906,6 +28908,8 @@ var render = function () {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "container" }, [
+    _c("h1", [_vm._v("Random Posts")]),
+    _vm._v(" "),
     _c(
       "div",
       {
@@ -29082,6 +29086,8 @@ var render = function () {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "container" }, [
+    _c("h1", [_vm._v("Tutti i nostri Posts")]),
+    _vm._v(" "),
     _c(
       "div",
       { staticClass: "row g-3" },
@@ -29299,7 +29305,10 @@ var render = function () {
                 _vm._v(" "),
                 _c("h1", [_vm._v(_vm._s(_vm.post.title))]),
                 _vm._v(" "),
-                _c("b", [_vm._v("By " + _vm._s(_vm.post.user.name))]),
+                _c("b", [
+                  _c("span", { staticClass: "text-muted" }, [_vm._v("By ")]),
+                  _vm._v(" " + _vm._s(_vm.post.user.name)),
+                ]),
                 _vm._v(" "),
                 _c(
                   "div",
